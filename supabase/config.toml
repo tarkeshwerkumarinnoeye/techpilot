@@ -1,0 +1,8 @@
+project_id = "genlkrldajiwscnrbuvu"
+
+# Both functions check their own bearer token instead of a Supabase JWT.
+[functions.ingest]
+verify_jwt = false
+
+[functions.daily-digest]
+verify_jwt = false
