@@ -51,8 +51,8 @@ function NewsRow({ item }: { item: NewsItem }) {
     <AccordionItem value={item.id}>
       <AccordionTrigger className="items-start gap-3 py-3 hover:no-underline [&[aria-expanded=true]_.news-title]:text-primary">
         <span className="flex min-w-0 flex-col gap-1.5">
-          <span className="news-title text-sm leading-snug font-medium text-pretty">{item.title}</span>
-          <span className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs font-normal text-muted-foreground">
+          <span className="news-title text-base leading-snug font-medium text-pretty">{item.title}</span>
+          <span className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm font-normal text-muted-foreground">
             <span className="inline-flex items-center gap-1.5 text-foreground/80">
               <span className={`size-1.5 rounded-full ${category.dotClass}`} aria-hidden />
               {category.label}
@@ -65,13 +65,13 @@ function NewsRow({ item }: { item: NewsItem }) {
         </span>
       </AccordionTrigger>
       <AccordionContent className="flex flex-col gap-2 pb-3 [&_p:not(:last-child)]:mb-0">
-        <p className="leading-relaxed text-foreground/90">{item.summary}</p>
+        <p className="text-base leading-relaxed text-foreground/90">{item.summary}</p>
         {item.url ? (
-          <ExternalLink href={item.url} className="w-fit text-xs no-underline!">
+          <ExternalLink href={item.url} className="w-fit text-sm no-underline!">
             Read original
           </ExternalLink>
         ) : (
-          <p className="text-xs text-muted-foreground">Sample item · source not connected</p>
+          <p className="text-sm text-muted-foreground">Sample item · source not connected</p>
         )}
       </AccordionContent>
     </AccordionItem>

@@ -130,5 +130,11 @@
   }
   html {
     @apply font-sans;
+    font-size: 100%;
+  }
+  @media (width >= 96rem) {
+    html {
+      font-size: 112.5%;
+    }
   }
 }

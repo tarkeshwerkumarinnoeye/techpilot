@@ -30,16 +30,16 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`dark ${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col">
-        <header className="sticky top-0 z-40 border-b bg-background/85 backdrop-blur supports-backdrop-filter:bg-background/70">
-          <div className="mx-auto flex h-14 w-full max-w-7xl items-center gap-2.5 px-4 sm:px-6">
-            <span className="flex size-7 items-center justify-center rounded-md bg-primary/15 text-primary">
-              <Compass className="size-4" aria-hidden />
+      <body className="flex min-h-dvh flex-col xl:h-dvh xl:min-h-[44rem]">
+        <header className="sticky top-0 z-40 shrink-0 border-b bg-background/85 backdrop-blur supports-backdrop-filter:bg-background/70">
+          <div className="flex h-14 w-full items-center gap-2.5 px-4 sm:px-6 xl:px-8">
+            <span className="flex size-8 items-center justify-center rounded-md bg-primary/15 text-primary">
+              <Compass className="size-5" aria-hidden />
             </span>
-            <span className="text-sm font-semibold tracking-tight">TechPilot</span>
+            <span className="text-base font-semibold tracking-tight">TechPilot</span>
           </div>
         </header>
-        <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-6 sm:px-6 sm:py-8">{children}</main>
+        <main className="flex w-full flex-1 flex-col px-4 py-6 sm:px-6 xl:min-h-0 xl:px-8">{children}</main>
       </body>
     </html>
   );

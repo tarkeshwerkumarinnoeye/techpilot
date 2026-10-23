@@ -59,7 +59,7 @@ function QuestionBody({ question }: { question: DailyInterviewQuestion }) {
         )}
       </div>
 
-      <p className="text-base leading-relaxed font-medium text-pretty">{question.question}</p>
+      <p className="text-lg leading-relaxed font-medium text-pretty">{question.question}</p>
 
       <Collapsible open={open} onOpenChange={setOpen} className="flex flex-col gap-3">
         <CollapsibleTrigger asChild>
@@ -73,11 +73,11 @@ function QuestionBody({ question }: { question: DailyInterviewQuestion }) {
         </CollapsibleTrigger>
         <CollapsibleContent className="flex flex-col gap-3 rounded-lg bg-muted/40 p-4">
           {toParagraphs(question.answer).map((paragraph, index) => (
-            <p key={index} className="text-sm leading-relaxed text-foreground/90">
+            <p key={index} className="text-base leading-relaxed text-foreground/90">
               {paragraph}
             </p>
           ))}
-          <p className="text-xs text-muted-foreground">{ANSWER_ORIGIN_LABEL[question.answerOrigin]}</p>
+          <p className="text-sm text-muted-foreground">{ANSWER_ORIGIN_LABEL[question.answerOrigin]}</p>
         </CollapsibleContent>
       </Collapsible>
     </div>

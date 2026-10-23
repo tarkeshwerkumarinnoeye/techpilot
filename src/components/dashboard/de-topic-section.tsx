@@ -41,34 +41,34 @@ export function DeTopicSection({ dates, current, previous }: DeTopicSectionProps
 function TopicBody({ topic }: { topic: DeTopic }) {
   return (
     <article className="flex flex-col gap-4">
-      <h3 className="text-lg leading-snug font-semibold text-pretty">{topic.title}</h3>
+      <h3 className="text-xl leading-snug font-semibold text-pretty">{topic.title}</h3>
 
       <div className="flex flex-col gap-3">
         {toParagraphs(topic.explanation).map((paragraph, index) => (
-          <p key={index} className="text-sm leading-relaxed text-foreground/90">
+          <p key={index} className="text-base leading-relaxed text-foreground/90">
             {paragraph}
           </p>
         ))}
       </div>
 
       <div className="flex flex-col gap-2">
-        <h4 className="text-xs font-medium tracking-wide text-muted-foreground uppercase">
+        <h4 className="text-sm font-medium tracking-wide text-muted-foreground uppercase">
           Practical example
         </h4>
-        <pre className="max-w-full overflow-x-auto rounded-lg bg-muted/50 p-3 font-mono text-xs leading-relaxed">
+        <pre className="max-w-full overflow-x-auto rounded-lg bg-muted/50 p-3 font-mono text-sm leading-relaxed whitespace-pre-wrap wrap-break-word">
           <code>{topic.practicalExample}</code>
         </pre>
       </div>
 
       {topic.referenceUrls.length > 0 && (
         <div className="flex flex-col gap-2">
-          <h4 className="text-xs font-medium tracking-wide text-muted-foreground uppercase">
+          <h4 className="text-sm font-medium tracking-wide text-muted-foreground uppercase">
             Read more
           </h4>
           <ul className="flex flex-col gap-1.5">
             {topic.referenceUrls.map((url) => (
               <li key={url}>
-                <ExternalLink href={url} className="text-sm">
+                <ExternalLink href={url} className="text-base">
                   {hostnameOf(url)}
                 </ExternalLink>
               </li>

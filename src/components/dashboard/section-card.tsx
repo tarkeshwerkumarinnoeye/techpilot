@@ -63,11 +63,11 @@ export function SectionCard({
       : "View previous day";
 
   return (
-    <Card aria-labelledby={headingId} role="region" className="gap-4">
-      <CardHeader className="gap-1.5">
+    <Card aria-labelledby={headingId} role="region" className="min-h-0 gap-4 text-base xl:h-full">
+      <CardHeader className="shrink-0 gap-1.5">
         <div className="flex flex-wrap items-center gap-2">
-          <Icon className="size-4 text-primary" aria-hidden />
-          <CardTitle>
+          <Icon className="size-5 text-primary" aria-hidden />
+          <CardTitle className="text-lg">
             <h2 id={headingId}>{title}</h2>
           </CardTitle>
           {showingPrevious && (
@@ -77,13 +77,18 @@ export function SectionCard({
           )}
           {isDemo && <DemoBadge />}
         </div>
-        {subtitle && <p className="text-xs text-muted-foreground">{subtitle}</p>}
+        {subtitle && <p className="text-sm text-muted-foreground">{subtitle}</p>}
       </CardHeader>
 
-      <CardContent className="flex-1">{children}</CardContent>
+      <CardContent
+        key={showingPrevious ? "previous" : "selected"}
+        className="relative flex-1 wrap-break-word xl:min-h-0 xl:overflow-y-auto xl:pr-3 xl:[scrollbar-gutter:stable]"
+      >
+        {children}
+      </CardContent>
 
-      <CardFooter className="flex-wrap justify-between gap-2 bg-transparent py-3">
-        <p className="text-xs text-muted-foreground">
+      <CardFooter className="shrink-0 flex-wrap justify-between gap-2 bg-transparent py-3">
+        <p className="text-sm text-muted-foreground">
           {updatedAt ? `Updated ${formatTimestampIST(updatedAt)}` : "Not updated for this date"}
         </p>
         <Button

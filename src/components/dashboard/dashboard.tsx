@@ -43,11 +43,11 @@ export async function Dashboard({ searchParams }: DashboardProps) {
   ]);
 
   return (
-    <div className="flex flex-col gap-6">
-      <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+    <div className="flex flex-col gap-6 xl:min-h-0 xl:flex-1">
+      <div className="flex shrink-0 flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
         <div className="flex flex-col gap-1">
-          <h1 className="text-2xl font-semibold tracking-tight">Daily briefing</h1>
-          <p className="text-sm text-muted-foreground">
+          <h1 className="text-3xl font-semibold tracking-tight">Daily briefing</h1>
+          <p className="text-base text-muted-foreground">
             {dates.selectedDate === today ? "Today, " : ""}
             {formatLongDate(dates.selectedDate)} · India Standard Time
           </p>
@@ -56,7 +56,7 @@ export async function Dashboard({ searchParams }: DashboardProps) {
       </div>
 
       {(repository.mode === "demo" || resolved.status === "invalid" || resolved.status === "out_of_range") && (
-        <div className="flex flex-col gap-2">
+        <div className="flex shrink-0 flex-col gap-2">
           {repository.mode === "demo" && (
             <Notice>
               Demo mode: every section shows sample content. Live content appears once the daily update
@@ -73,23 +73,22 @@ export async function Dashboard({ searchParams }: DashboardProps) {
         </div>
       )}
 
-      <div key={dates.selectedDate} className="grid items-start gap-4 md:grid-cols-2 lg:grid-cols-5">
-        <div className="flex min-w-0 flex-col gap-4 lg:col-span-3">
-          <InterviewQuestionSection
-            dates={dates}
-            current={current.interviewQuestion}
-            previous={previous.interviewQuestion}
-          />
-          <DeTopicSection dates={dates} current={current.deTopic} previous={previous.deTopic} />
-        </div>
-        <div className="flex min-w-0 flex-col gap-4 lg:col-span-2">
-          <TechNewsSection dates={dates} current={current.news} previous={previous.news} />
-          <TrendingReposSection
-            dates={dates}
-            current={current.trendingRepos}
-            previous={previous.trendingRepos}
-          />
-        </div>
+      <div
+        key={dates.selectedDate}
+        className="grid items-start gap-4 md:grid-cols-2 xl:items-stretch xl:min-h-0 xl:flex-1 xl:grid-cols-4 *:min-w-0 xl:*:min-h-0"
+      >
+        <InterviewQuestionSection
+          dates={dates}
+          current={current.interviewQuestion}
+          previous={previous.interviewQuestion}
+        />
+        <DeTopicSection dates={dates} current={current.deTopic} previous={previous.deTopic} />
+        <TechNewsSection dates={dates} current={current.news} previous={previous.news} />
+        <TrendingReposSection
+          dates={dates}
+          current={current.trendingRepos}
+          previous={previous.trendingRepos}
+        />
       </div>
     </div>
   );
@@ -97,8 +96,8 @@ export async function Dashboard({ searchParams }: DashboardProps) {
 
 function Notice({ children }: { children: React.ReactNode }) {
   return (
-    <p className="flex items-start gap-2 rounded-lg border border-primary/20 bg-primary/5 px-3 py-2 text-xs leading-relaxed text-foreground/85">
-      <Info className="mt-px size-3.5 shrink-0 text-primary" aria-hidden />
+    <p className="flex items-start gap-2 rounded-lg border border-primary/20 bg-primary/5 px-3 py-2 text-sm leading-relaxed text-foreground/85">
+      <Info className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden />
       <span>{children}</span>
     </p>
   );

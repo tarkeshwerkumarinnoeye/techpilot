@@ -48,26 +48,26 @@ export function TrendingReposSection({ dates, current, previous }: TrendingRepos
 function RepoRow({ repo }: { repo: TrendingRepo }) {
   return (
     <li className="flex gap-3 py-3 first:pt-0 last:pb-0">
-      <span className="w-5 shrink-0 pt-px text-right font-mono text-xs text-muted-foreground">
+      <span className="w-6 shrink-0 pt-0.5 text-right font-mono text-sm text-muted-foreground">
         {repo.rank}
       </span>
       <div className="flex min-w-0 flex-col gap-1">
         {repo.url ? (
-          <ExternalLink href={repo.url} className="font-mono text-sm break-all">
+          <ExternalLink href={repo.url} className="font-mono text-base break-all">
             {repo.fullName}
           </ExternalLink>
         ) : (
-          <span className="font-mono text-sm font-medium break-all">{repo.fullName}</span>
+          <span className="font-mono text-base font-medium break-all">{repo.fullName}</span>
         )}
         {repo.description && (
-          <p className="line-clamp-2 text-xs leading-relaxed text-muted-foreground">
+          <p className="line-clamp-3 text-sm leading-relaxed text-muted-foreground">
             {repo.description}
           </p>
         )}
-        <div className="flex items-center gap-3 text-xs text-muted-foreground">
+        <div className="flex items-center gap-3 text-sm text-muted-foreground">
           {repo.language && <span>{repo.language}</span>}
           <span className="inline-flex items-center gap-1">
-            <Star className="size-3" aria-hidden />
+            <Star className="size-3.5" aria-hidden />
             {formatCompactNumber(repo.stars)}
             <span className="sr-only">stars</span>
           </span>
