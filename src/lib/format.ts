@@ -21,17 +21,17 @@ export function toParagraphs(text: string): string[] {
 }
 
 export const NEWS_CATEGORY_META: Record<NewsCategory, { label: string; dotClass: string }> = {
-  ai: { label: "AI", dotClass: "bg-violet-400" },
-  data_engineering: { label: "Data Engineering", dotClass: "bg-sky-400" },
-  cloud: { label: "Cloud", dotClass: "bg-teal-400" },
-  technology: { label: "Technology", dotClass: "bg-amber-400" },
-  careers: { label: "Careers", dotClass: "bg-emerald-400" },
+  ai: { label: "AI", dotClass: "bg-violet-500 dark:bg-violet-400" },
+  data_engineering: { label: "Data Engineering", dotClass: "bg-sky-500 dark:bg-sky-400" },
+  cloud: { label: "Cloud", dotClass: "bg-teal-500 dark:bg-teal-400" },
+  technology: { label: "Technology", dotClass: "bg-amber-500 dark:bg-amber-400" },
+  careers: { label: "Careers", dotClass: "bg-emerald-500 dark:bg-emerald-400" },
 };
 
 export const DIFFICULTY_META: Record<Difficulty, { label: string; className: string }> = {
-  easy: { label: "Easy", className: "text-emerald-300" },
-  medium: { label: "Medium", className: "text-amber-300" },
-  hard: { label: "Hard", className: "text-rose-300" },
+  easy: { label: "Easy", className: "text-emerald-700 dark:text-emerald-300" },
+  medium: { label: "Medium", className: "text-amber-700 dark:text-amber-300" },
+  hard: { label: "Hard", className: "text-rose-700 dark:text-rose-300" },
 };
 
 export const ANSWER_ORIGIN_LABEL: Record<AnswerOrigin, string> = {
