@@ -1,6 +1,6 @@
 import "server-only";
 
-import type { DailyContent, DigestDate } from "@/types/content";
+import type { DigestDate } from "@/types/content";
 import { createMockRepository } from "./mock/mock-repository";
 import type { DailyContentRepository } from "./repository";
 import { createSupabaseRepository } from "./supabase/supabase-repository";
@@ -15,17 +15,4 @@ export function getRepository(today: DigestDate): DailyContentRepository {
     return createSupabaseRepository({ url, publishableKey }, today);
   }
   return createMockRepository(today);
-}
-
-export async function getDailyContent(
-  repository: DailyContentRepository,
-  date: DigestDate,
-): Promise<DailyContent> {
-  const [interviewQuestion, news, deTopic, trendingRepos] = await Promise.all([
-    repository.getInterviewQuestion(date),
-    repository.getNews(date),
-    repository.getDeTopic(date),
-    repository.getTrendingRepos(date),
-  ]);
-  return { interviewQuestion, news, deTopic, trendingRepos };
 }

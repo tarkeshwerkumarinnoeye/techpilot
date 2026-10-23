@@ -1,13 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { History, type LucideIcon, Undo2 } from "lucide-react";
+import { History, Undo2 } from "lucide-react";
 import { DemoBadge } from "@/components/common/demo-badge";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { CardContent, CardFooter } from "@/components/ui/card";
 import { formatShortDate, formatTimestampIST } from "@/lib/dates";
 import type { DigestDate, IsoTimestamp } from "@/types/content";
+import type { SectionId } from "./section-accents";
+import { SectionFrame } from "./section-frame";
 
 export interface SectionDates {
   selectedDate: DigestDate;
@@ -27,10 +29,7 @@ export function usePreviousDayToggle({ selectedDate, previousDate }: SectionDate
 }
 
 interface SectionCardProps {
-  id: string;
-  title: string;
-  subtitle?: string;
-  icon: LucideIcon;
+  section: SectionId;
   dates: SectionDates;
   showingPrevious: boolean;
   onToggle: () => void;
@@ -40,10 +39,7 @@ interface SectionCardProps {
 }
 
 export function SectionCard({
-  id,
-  title,
-  subtitle,
-  icon: Icon,
+  section,
   dates,
   showingPrevious,
   onToggle,
@@ -52,7 +48,6 @@ export function SectionCard({
   children,
 }: SectionCardProps) {
   const isToday = dates.selectedDate === dates.today;
-  const headingId = `${id}-heading`;
 
   const toggleLabel = showingPrevious
     ? isToday
@@ -63,22 +58,20 @@ export function SectionCard({
       : "View previous day";
 
   return (
-    <Card aria-labelledby={headingId} role="region" className="min-h-0 gap-4 text-base xl:h-full">
-      <CardHeader className="shrink-0 gap-1.5">
-        <div className="flex flex-wrap items-center gap-2">
-          <Icon className="size-5 text-primary" aria-hidden />
-          <CardTitle className="text-lg">
-            <h2 id={headingId}>{title}</h2>
-          </CardTitle>
+    <SectionFrame
+      section={section}
+      className="animate-in fade-in slide-in-from-bottom-2 motion-reduce:animate-none"
+      badges={
+        <>
           {showingPrevious && (
             <Badge variant="secondary">
               {isToday ? "Yesterday" : formatShortDate(dates.previousDate)}
             </Badge>
           )}
           {isDemo && <DemoBadge />}
-        </div>
-        {subtitle && <p className="text-sm text-muted-foreground">{subtitle}</p>}
-      </CardHeader>
+        </>
+      }
+    >
 
       <CardContent
         key={showingPrevious ? "previous" : "selected"}
@@ -88,7 +81,7 @@ export function SectionCard({
       </CardContent>
 
       <CardFooter className="shrink-0 flex-wrap justify-between gap-2 bg-transparent py-3">
-        <p className="text-sm text-muted-foreground">
+        <p className="text-sm text-muted-foreground tabular-nums">
           {updatedAt ? `Updated ${formatTimestampIST(updatedAt)}` : "Not updated for this date"}
         </p>
         <Button
@@ -103,6 +96,6 @@ export function SectionCard({
           {toggleLabel}
         </Button>
       </CardFooter>
-    </Card>
+    </SectionFrame>
   );
 }

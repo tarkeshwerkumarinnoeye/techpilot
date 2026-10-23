@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDown, MessageSquareText } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { EmptyState } from "@/components/common/empty-state";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -24,9 +24,7 @@ export function InterviewQuestionSection({ dates, current, previous }: Interview
 
   return (
     <SectionCard
-      id="interview"
-      title="Interview question"
-      icon={MessageSquareText}
+      section="interview"
       dates={dates}
       showingPrevious={showingPrevious}
       onToggle={toggle}
@@ -59,7 +57,7 @@ function QuestionBody({ question }: { question: DailyInterviewQuestion }) {
         )}
       </div>
 
-      <p className="text-lg leading-relaxed font-medium text-pretty">{question.question}</p>
+      <p className="font-heading text-xl leading-snug font-medium text-pretty">{question.question}</p>
 
       <Collapsible open={open} onOpenChange={setOpen} className="flex flex-col gap-3">
         <CollapsibleTrigger asChild>

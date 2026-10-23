@@ -1,6 +1,5 @@
 "use client";
 
-import { GraduationCap } from "lucide-react";
 import { EmptyState } from "@/components/common/empty-state";
 import { ExternalLink } from "@/components/common/external-link";
 import { formatShortDate } from "@/lib/dates";
@@ -20,9 +19,7 @@ export function DeTopicSection({ dates, current, previous }: DeTopicSectionProps
 
   return (
     <SectionCard
-      id="de-topic"
-      title="Data Engineering topic"
-      icon={GraduationCap}
+      section="de-topic"
       dates={dates}
       showingPrevious={showingPrevious}
       onToggle={toggle}
@@ -41,7 +38,7 @@ export function DeTopicSection({ dates, current, previous }: DeTopicSectionProps
 function TopicBody({ topic }: { topic: DeTopic }) {
   return (
     <article className="flex flex-col gap-4">
-      <h3 className="text-xl leading-snug font-semibold text-pretty">{topic.title}</h3>
+      <h3 className="font-heading text-xl leading-snug font-semibold text-pretty">{topic.title}</h3>
 
       <div className="flex flex-col gap-3">
         {toParagraphs(topic.explanation).map((paragraph, index) => (

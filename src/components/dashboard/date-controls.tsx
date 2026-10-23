@@ -13,7 +13,11 @@ import {
   formatShortDate,
   localDateToDigestDate,
 } from "@/lib/dates";
+import { cn } from "@/lib/utils";
 import type { DateRange, DigestDate } from "@/types/content";
+
+const SEGMENT_ACTIVE =
+  "bg-background text-foreground shadow-sm hover:bg-background hover:text-foreground dark:bg-white/12 dark:hover:bg-white/12";
 
 interface DateControlsProps {
   selectedDate: DigestDate;
@@ -40,10 +44,15 @@ export function DateControls({ selectedDate, today, range }: DateControlsProps) 
   };
 
   return (
-    <div className="flex flex-wrap items-center gap-2" aria-busy={isPending}>
-      <div className="flex items-center gap-1">
+    <div
+      role="toolbar"
+      aria-label="Choose a day"
+      aria-busy={isPending}
+      className="flex w-fit flex-wrap items-center gap-1 rounded-xl border bg-card/70 p-1 shadow-sm backdrop-blur"
+    >
+      <div className="flex items-center gap-0.5">
         <Button
-          variant="outline"
+          variant="ghost"
           size="icon-lg"
           onClick={() => goTo(previousDay)}
           disabled={!canGoBack}
@@ -54,7 +63,7 @@ export function DateControls({ selectedDate, today, range }: DateControlsProps) 
 
         <Popover open={calendarOpen} onOpenChange={setCalendarOpen}>
           <PopoverTrigger asChild>
-            <Button variant="outline" size="lg" className="min-w-0 gap-2 px-3">
+            <Button variant="ghost" size="lg" className="min-w-0 gap-2 px-3 tabular-nums">
               <CalendarDays aria-hidden />
               <span className="hidden sm:inline">{formatLongDate(selectedDate)}</span>
               <span className="sm:hidden">{formatShortDate(selectedDate)}</span>
@@ -83,7 +92,7 @@ export function DateControls({ selectedDate, today, range }: DateControlsProps) 
         </Popover>
 
         <Button
-          variant="outline"
+          variant="ghost"
           size="icon-lg"
           onClick={() => goTo(nextDay)}
           disabled={!canGoForward}
@@ -93,28 +102,38 @@ export function DateControls({ selectedDate, today, range }: DateControlsProps) 
         </Button>
       </div>
 
-      <div className="flex items-center gap-1">
+      <span aria-hidden className="mx-1 hidden h-6 w-px bg-border sm:block" />
+
+      <div className="flex items-center gap-0.5 rounded-lg bg-muted p-0.5">
         <Button
-          variant={selectedDate === today ? "secondary" : "ghost"}
-          size="lg"
+          variant="ghost"
+          size="sm"
           onClick={() => goTo(today)}
           aria-pressed={selectedDate === today}
+          className={cn(
+            "h-8 px-3 text-sm text-muted-foreground",
+            selectedDate === today && SEGMENT_ACTIVE,
+          )}
         >
           Today
         </Button>
         <Button
-          variant={selectedDate === yesterday ? "secondary" : "ghost"}
-          size="lg"
+          variant="ghost"
+          size="sm"
           onClick={() => goTo(yesterday)}
           disabled={yesterday < range.min}
           aria-pressed={selectedDate === yesterday}
+          className={cn(
+            "h-8 px-3 text-sm text-muted-foreground",
+            selectedDate === yesterday && SEGMENT_ACTIVE,
+          )}
         >
           Yesterday
         </Button>
-        {isPending && (
-          <Loader2 className="size-4 animate-spin text-muted-foreground" aria-label="Loading" />
-        )}
       </div>
+      {isPending && (
+        <Loader2 className="mx-1 size-4 animate-spin text-muted-foreground" aria-label="Loading" />
+      )}
     </div>
   );
 }

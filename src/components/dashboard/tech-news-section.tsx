@@ -1,6 +1,5 @@
 "use client";
 
-import { Newspaper } from "lucide-react";
 import { EmptyState } from "@/components/common/empty-state";
 import { ExternalLink } from "@/components/common/external-link";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -21,10 +20,7 @@ export function TechNewsSection({ dates, current, previous }: TechNewsSectionPro
 
   return (
     <SectionCard
-      id="news"
-      title="Tech news"
-      subtitle="AI, Data Engineering, Cloud and more. Select a headline to read the summary."
-      icon={Newspaper}
+      section="news"
       dates={dates}
       showingPrevious={showingPrevious}
       onToggle={toggle}
@@ -52,7 +48,7 @@ function NewsRow({ item }: { item: NewsItem }) {
       <AccordionTrigger className="items-start gap-3 py-3 hover:no-underline [&[aria-expanded=true]_.news-title]:text-primary">
         <span className="flex min-w-0 flex-col gap-1.5">
           <span className="news-title text-base leading-snug font-medium text-pretty">{item.title}</span>
-          <span className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm font-normal text-muted-foreground">
+          <span className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm font-normal text-muted-foreground tabular-nums">
             <span className="inline-flex items-center gap-1.5 text-foreground/80">
               <span className={`size-1.5 rounded-full ${category.dotClass}`} aria-hidden />
               {category.label}

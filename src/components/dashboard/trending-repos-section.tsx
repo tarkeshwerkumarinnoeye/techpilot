@@ -1,6 +1,6 @@
 "use client";
 
-import { GitFork, Star } from "lucide-react";
+import { Star } from "lucide-react";
 import { EmptyState } from "@/components/common/empty-state";
 import { ExternalLink } from "@/components/common/external-link";
 import { formatShortDate, latestTimestamp } from "@/lib/dates";
@@ -20,10 +20,7 @@ export function TrendingReposSection({ dates, current, previous }: TrendingRepos
 
   return (
     <SectionCard
-      id="trending"
-      title="Trending repos"
-      subtitle="Repositories created in the last 7 days, ranked by stars."
-      icon={GitFork}
+      section="trending"
       dates={dates}
       showingPrevious={showingPrevious}
       onToggle={toggle}
@@ -48,7 +45,7 @@ export function TrendingReposSection({ dates, current, previous }: TrendingRepos
 function RepoRow({ repo }: { repo: TrendingRepo }) {
   return (
     <li className="flex gap-3 py-3 first:pt-0 last:pb-0">
-      <span className="w-6 shrink-0 pt-0.5 text-right font-mono text-sm text-muted-foreground">
+      <span className="w-6 shrink-0 pt-0.5 text-right font-mono text-sm text-muted-foreground tabular-nums">
         {repo.rank}
       </span>
       <div className="flex min-w-0 flex-col gap-1">
@@ -64,7 +61,7 @@ function RepoRow({ repo }: { repo: TrendingRepo }) {
             {repo.description}
           </p>
         )}
-        <div className="flex items-center gap-3 text-sm text-muted-foreground">
+        <div className="flex items-center gap-3 text-sm text-muted-foreground tabular-nums">
           {repo.language && <span>{repo.language}</span>}
           <span className="inline-flex items-center gap-1">
             <Star className="size-3.5" aria-hidden />
